@@ -27,3 +27,4 @@ export class MasterEntity implements Master {
   })
   userId: string;
 }
+

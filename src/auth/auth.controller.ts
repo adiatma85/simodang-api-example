@@ -1,4 +1,4 @@
-import { Controller, Param, Post, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { TokenGuard } from 'src/guard/token.guard';
 import {
@@ -9,11 +9,17 @@ import {
 } from '@nestjs/swagger';
 import { GuardErrorExample } from 'src/errors/examples/guard-error-example';
 import { AuthErrorExample } from 'src/errors/examples/auth-error-example';
+import { Ptesting } from './dto/ptesting.dto';
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @Get('/ptesting/:id/:deviceId')
+  ptesting(@Param() parameters : Ptesting) {
+    return parameters
+  }
 
   @Post('/v2/logout')
   @UseGuards(TokenGuard)
